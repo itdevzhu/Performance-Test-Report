@@ -5,30 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>性能测试报告管理库</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 40px auto; padding: 0 20px; }
-        h1 { border-bottom: 2px solid #eee; padding-bottom: 10px; color: #24292e; }
-        .project-section { margin-bottom: 30px; }
-        h2 { color: #0366d6; font-size: 1.2rem; }
-        ul { list-style: none; padding: 0; }
-        li { background: #f6f8fa; margin-bottom: 8px; padding: 10px 15px; border-radius: 6px; border: 1px solid #e1e4e8; transition: 0.2s; }
-        li:hover { background: #f0f3f6; border-color: #0366d6; }
-        a { text-decoration: none; color: #0366d6; font-weight: bold; display: block; }
-        .date { font-size: 0.85em; color: #6a737d; margin-top: 4px; }
+        /* 样式保持简洁专业 */
+        body { font-family: -apple-system, system-ui, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 40px auto; padding: 0 20px; background-color: #f4f7f9; }
+        h1 { text-align: center; color: #24292e; margin-bottom: 30px; }
+        .project-card { background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 20px; border-left: 5px solid #0366d6; }
+        .project-header { background: #fafbfc; padding: 10px 20px; font-weight: bold; border-bottom: 1px solid #e1e4e8; color: #57606a; border-radius: 0 8px 0 0; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        a { text-decoration: none; color: #0366d6; display: block; padding: 15px 20px; transition: background 0.2s; }
+        a:hover { background-color: #f0f7ff; }
+        .file-name { font-weight: 500; }
+        .update-date { font-size: 12px; color: #8899a6; float: right; }
     </style>
 </head>
 <body>
 
-    <h1>📊 性能测试报告合集</h1>
+    <h1>📊 性能测试报告管理库</h1>
 
-    <div class="project-section">
-        <h2>📁 三国：冰河时代 </h2>
+    <div class="project-card">
+        <div class="project-header">📁 Barns_Beaches</div>
         <ul>
             <li>
-                <a href="sanbing/0119vs0309.html">三国：冰河时代 VS 无尽冬日性能对比报告 (0119 vs 0309)</a>
-                <div class="date">更新时间：2024-03-12</div>
+                <a href="Barns_and_Beaches/Barns&Beaches_vs_TastyTravel.html">
+                    <span class="file-name">Barns & Beaches vs Tasty Travel 对比报告</span>
+                </a>
             </li>
         </ul>
     </div>
 
-    </body>
+    <div class="project-card">
+        <div class="project-header">📁 FarmFeud</div>
+        <ul>
+            <li>
+                <a href="FarmFeud/FarmFeud_0122.html">
+                    <span class="file-name">FarmFeud 0122 性能报告</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="project-card">
+        <div class="project-header">📁 sanbing</div>
+        <ul>
+            <li>
+                <a href="sanbing/0119vs0309.html">
+                    <span class="file-name">冰河时代 VS 无尽冬日性能对比</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</body>
 </html>
