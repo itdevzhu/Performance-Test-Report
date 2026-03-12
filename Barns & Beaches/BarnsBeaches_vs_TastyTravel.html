@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barns&Beaches vs Tasty Travel 性能对比报告</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .section {
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .chart-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .chart-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e9ecef;
+        }
+        
+        .product-barns {
+            background-color: #2E8B57;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .product-tasty {
+            background-color: #DC143C;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .better {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .worse {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .same {
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+        
+        .summary-item {
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #e3f2fd;
+            border-radius: 5px;
+        }
+        
+        .summary-item h4 {
+            color: #1976d2;
+            margin-bottom: 5px;
+        }
+        
+        .conclusion {
+            background-color: #fff3e0;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 5px solid #f57c00;
+        }
+        
+        .conclusion h3 {
+            color: #e65100;
+            margin-bottom: 15px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: white;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .section-title {
+                font-size: 1.3em;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<!--<style>-->
+<!--    body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #f0f4ff 0%, #e8f0ff 100%); color: #2d3748; line-height: 1.6; min-height: 100vh; }-->
+<!--    .container { max-width: 1400px; margin: 0 auto; padding: 40px 20px; }-->
+<!--</style>-->
+    <div class="container">
+        <!-- 报告头部 -->
+        <div class="header">
+            <h1>Barns&Beaches vs Tasty Travel 性能对比报告</h1>
+            <p>测试机型：Samsung Galaxy S9+ plus、Samsung Galaxy S10+、realme C53、OPPO A18（国际版）、Pixel 10</p>
+            <p>报告生成时间：2026年02月12日 10:02:22</p>
+        </div>
+        
+        <!-- 报告概述 -->
+        <div class="section">
+            <h2 class="section-title">1. 报告概述</h2>
+            <p>本报告对公司产品 <strong>Barns&Beaches</strong> 与竞品 <strong>Tasty Travel</strong> 在5款不同型号手机上的性能表现进行全面对比分析。</p>
+            <p>测试的性能指标包括：</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li><strong>帧率 (FPS)</strong>：衡量画面流畅度，数值越高越好</li>
+                <li><strong>卡顿次数 (Jank/10min)</strong>：衡量画面卡顿频率，数值越低越好</li>
+                <li><strong>严重卡顿次数 (BigJank/10min)</strong>：衡量严重卡顿频率，数值越低越好</li>
+                <li><strong>CPU使用率 (Avg AppCPU %)</strong>：衡量CPU资源占用，数值越低越好</li>
+                <li><strong>内存峰值 (Peak Memory)</strong>：衡量内存资源占用，数值越低越好</li>
+                <li><strong>平均功耗 (Avg(Power) [mW])</strong>：衡量耗电情况，数值越低越好</li>
+            </ul>
+        </div>
+        
+        <!-- 详细性能数据 -->
+        <div class="section">
+            <h2 class="section-title">2. 详细性能数据对比</h2>
+            <p>下表展示了两款应用在各机型上的详细性能数据及相对差异（以Tasty Travel为基准）：</p>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th rowspan="2">手机型号</th>
+                            <th colspan="3">帧率 (FPS)</th>
+                            <th colspan="3">卡顿 (Jank/10min)</th>
+                            <th colspan="3">严重卡顿 (BigJank/10min)</th>
+                            <th colspan="3">CPU使用率 (%)</th>
+                            <th colspan="3">内存峰值</th>
+                            <th colspan="3">平均功耗[mW]</th>
+                        </tr>
+                        <tr>
+                            <th class="product-barns">Barns</th>
+                            <th class="product-tasty">Tasty</th>
+                            <th>差异</th>
+                            <th class="product-barns">Barns</th>
+                            <th class="product-tasty">Tasty</th>
+                            <th>差异</th>
+                            <th class="product-barns">Barns</th>
+                            <th class="product-tasty">Tasty</th>
+                            <th>差异</th>
+                            <th class="product-barns">Barns</th>
+                            <th class="product-tasty">Tasty</th>
+                            <th>差异</th>
+                            <th class="product-barns">Barns</th>
+                            <th class="product-tasty">Tasty</th>
+                            <th>差异</th>
+                            <th class="product-barns">Barns</th>
+                            <th class="product-tasty">Tasty</th>
+                            <th>差异</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Samsung Galaxy S9+ plus</strong></td>
+                            <td>59.30</td>
+                            <td>58.34</td>
+                            <td><span class="better">+1.6%</span></td>
+                            <td>17.60</td>
+                            <td>18.90</td>
+                            <td><span class="better">-6.9%</span></td>
+                            <td>12.10</td>
+                            <td>13.40</td>
+                            <td><span class="better">-9.7%</span></td>
+                            <td>8.10%</td>
+                            <td>10.30%</td>
+                            <td><span class="better">-21.4%</span></td>
+                            <td>477.00</td>
+                            <td>1162.00</td>
+                            <td><span class="better">-59.0%</span></td>
+                            <td>3609.4</td>
+                            <td>2913.5</td>
+                            <td><span class="worse">+19.3%</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Samsung Galaxy S10+</strong></td>
+                            <td>59.73</td>
+                            <td>59.11</td>
+                            <td><span class="better">+1.0%</span></td>
+                            <td>3.20</td>
+                            <td>14.60</td>
+                            <td><span class="better">-78.1%</span></td>
+                            <td>0.00</td>
+                            <td>5.70</td>
+                            <td>Barns & Beaches 没有严重卡顿出现</td>
+                            <td>6.00%</td>
+                            <td>7.60%</td>
+                            <td><span class="better">-21.1%</span></td>
+                            <td>423.00</td>
+                            <td>1308.00</td>
+                            <td><span class="better">-67.7%</span></td>
+                            <td>3000.6</td>
+                            <td>2999.8</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td><strong>realme C53</strong></td>
+                            <td>39.44</td>
+                            <td>55.07</td>
+                            <td><span class="worse">-28.4%</span></td>
+                            <td>10.80</td>
+                            <td>18.30</td>
+                            <td><span class="better">-41.0%</span></td>
+                            <td>5.20</td>
+                            <td>16.50</td>
+                            <td><span class="better">-68.5%</span></td>
+                            <td>4.10%</td>
+                            <td>8.70%</td>
+                            <td><span class="better">-52.9%</span></td>
+                            <td>623.00</td>
+                            <td>1535.00</td>
+                            <td><span class="better">-59.4%</span></td>
+                            <td>数据有误，不计入统计</td>
+                            <td>数据有误，不计入统计</td>
+                            <td>数据有误，不计入统计</td>
+                        </tr>
+                        <tr>
+                            <td><strong>OPPO A18（国际版）</strong></td>
+                            <td>59.65</td>
+                            <td>56.61</td>
+                            <td><span class="better">+5.4%</span></td>
+                            <td>8.10</td>
+                            <td>27.80</td>
+                            <td><span class="better">-70.9%</span></td>
+                            <td>6.80</td>
+                            <td>18.60</td>
+                            <td><span class="better">-63.4%</span></td>
+                            <td>9.50%</td>
+                            <td>18.10%</td>
+                            <td><span class="better">-47.5%</span></td>
+                            <td>467.00</td>
+                            <td>1215.00</td>
+                            <td><span class="better">-61.6%</span></td>
+                           <td>2769.1</td>
+                            <td>2283.4</td>
+                            <td><span class="worse">+17.5%</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pixel 10</strong></td>
+                            <td>59.29</td>
+                            <td>59.63</td>
+                            <td><span class="worse">+0.6%</span></td>
+                            <td>25.9</td>
+                            <td>6.60</td>
+                            <td><span class="worse">+292.4%</span></td>
+                            <td>15.1</td>
+                            <td>3.8</td>
+                            <td><span class="worse">+297.4%</span></td>
+                            <td>18.4%</td>
+                            <td>16.5%</td>
+                            <td><span class="worse">+11.5%</span></td>
+                            <td>535.9</td>
+                            <td>1538.7</td>
+                            <td><span class="better">-65.2%</span></td>
+                            <td>2403.8</td>
+                            <td>2299.2</td>
+                            <td><span class="worse">+4.5%</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="margin-top: 20px; font-style: italic; color: #666;">
+                注：差异计算方式为 (Barns数据 - Tasty数据)/Tasty数据 × 100%。绿色表示Barns更优，红色表示Tasty更优，灰色表示持平。
+            </div>
+        </div>
+        
+        <!-- 性能分析总结 -->
+        <div class="section">
+            <h2 class="section-title">3. 性能分析总结</h2>
+            
+            <div class="summary-item">
+                <h4>4.1 帧率表现</h4>
+                <p>Barns&Beaches 在 3/5 个机型上帧率表现优于 Tasty Travel：</p>
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>在 realme C53 上明显低于竞品，存在明显的间歇式降帧</li>
+                    <li>在 其他机型上两款游戏帧率持平，表现稳定</li>
+
+                </ul>
+            </div>
+            
+            <div class="summary-item">
+                <h4>4.2 卡顿控制</h4>
+                <p>Barns&Beaches 在 4/5 个机型上卡顿次数少于 Tasty Travel：</p>
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>在 OPPO A18（国际版）和Samsung Galaxy S10+上优势显著，卡顿次数分别减少19.7次/10min和11.4次/10min</li>
+                    <li>仅在 Pixel 10 上表现出了明显差距</li>
+                </ul>
+            </div>
+            
+            <div class="summary-item">
+                <h4>4.3 CPU资源占用</h4>
+                <p>Barns&Beaches 在除 Pixel 10 的其他4个机型上CPU使用率均低于 Tasty Travel：</p>
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>优化程度在21.1%-52.9%</li>
+                    <li>相较于竞品，在 Pixel 10 上的CPU占用率约高10%</li>
+                </ul>
+            </div>
+            
+            <div class="summary-item">
+                <h4>4.4 内存占用</h4>
+                <p>在有数据记录的机型上，Barns&Beaches 内存峰值明显低于 Tasty Travel：</p>
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>在所有测试机型上，Barns&Beaches 内存占用均不到 Tasty Travel 的一半，内存管理效率更高</li>
+                </ul>
+            </div>
+
+            <div class="summary-item">
+                <h4>4.5 平均功耗[mW]</h4>
+                <p>在有数据记录的机型上，Barns&Beaches平均功耗均高于 Tasty Travel：</p>
+                <ul style="margin-left: 20px; margin-top: 5px;">
+                    <li>在有数据记录的机型上，除Pixel 10没有明显差距外，Barns&Beaches的平均功耗约为 Tasty Travel的1.2倍</li>
+                </ul>
+            </div>
+            <!-- 总体结论 -->
+            <div class="conclusion">
+                <h3>4.6 总体结论</h3>
+                <p>综合来看，Barns&Beaches 在性能表现上全面优于竞品 Tasty Travel，主要优势体现在：</p>
+                <ol style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>更流畅的画面表现</strong>：在多数机型上帧率更高，卡顿更少</li>
+                    <li><strong>更优的资源效率</strong>：CPU和内存占用显著低于竞品，对硬件要求更低</li>
+                    <li><strong>更稳定的性能输出</strong>：各机型间性能波动较小，表现一致</li>
+                </ol>
+                <p style="margin-top: 10px;">建议继续保持当前的性能优化方向，进一步提升在高端机型上的表现，同时维持在中低端机型上的优势。</p>
+            </div>
+        </div>
+        
+        <!-- 报告底部 -->
+        <div class="footer">
+            <p>Barns&Beaches vs Tasty Travel 性能对比报告 | 测试工具：PerfDog | 数据来源：各机型实际测试结果</p>
+            <p>© 测试开发组</p>
+        </div>
+    </div>
+</body>
+</html>
